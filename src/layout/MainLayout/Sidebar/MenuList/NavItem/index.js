@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         height: '8px'
     },
     listItem: {
-        marginBottom: '5px',
+        marginBottom: '6px',
         alignItems: 'center'
     },
     listItemNoBack: {
@@ -106,10 +106,10 @@ const NavItem = ({ item, level }) => {
             target={itemTarget}
             style={{ paddingLeft: level * 23 + 'px' }}
         >
-            <ListItemIcon className={itemIconClass}>{itemIcon}</ListItemIcon>
+            <ListItemIcon className={itemIconClass} color="theme.palette.grey[600]">{itemIcon}</ListItemIcon>
             <ListItemText
                 primary={
-                    <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
+                    <Typography variant="h3" color="theme.palette.grey[600]">
                         {item.title}
                     </Typography>
                 }

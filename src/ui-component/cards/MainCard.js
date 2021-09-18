@@ -15,8 +15,8 @@ const headerSX = {
 const MainCard = React.forwardRef(
     (
         {
-            border = true,
-            boxShadow,
+            border = false,
+            boxShadow=3,
             children,
             content = true,
             contentClass,
@@ -39,8 +39,9 @@ const MainCard = React.forwardRef(
                 sx={{
                     border: border ? '1px solid' : 'none',
                     borderColor: theme.palette.primary[200] + 75,
+                    boxShadow: '0 2px 14px 0 rgb(32 40 45 / 8%)', 
                     ':hover': {
-                        boxShadow: boxShadow ? (shadow ? shadow : '0 2px 14px 0 rgb(32 40 45 / 8%)') : 'inherit'
+                        boxShadow: boxShadow ? (shadow ? shadow : 2) : 'inherit'
                     },
                     ...sx
                 }}

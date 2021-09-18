@@ -28,19 +28,34 @@ export function themeTypography(theme) {
         h2: {
             fontSize: '1.5rem',
             color: theme.heading,
-            fontWeight: 700
+            fontWeight: 400
+        },
+        h2_light: {
+            fontSize: '1.5rem',
+            color: theme.heading,
+            fontWeight: 400
         },
         h1: {
             fontSize: '2.125rem',
             color: theme.heading,
             fontWeight: 700
         },
+        h1_light: {
+            fontSize: '2.125rem',
+            color: theme.heading,
+            fontWeight: 400
+        },
         subtitle1: {
+            fontSize: '1rem',
+            color: theme.heading,
+            fontWeight: 400
+        },
+        subtitle2: {
             fontSize: '0.875rem',
             fontWeight: 500,
             color: theme.textDark
         },
-        subtitle2: {
+        subtitle3: {
             fontSize: '0.75rem',
             fontWeight: 400,
             color: theme.darkTextSecondary

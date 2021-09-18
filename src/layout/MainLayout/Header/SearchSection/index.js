@@ -95,7 +95,7 @@ const SearchSection = () => {
                                     ml: 2
                                 }}
                             >
-                                <ButtonBase sx={{ borderRadius: '12px' }}>
+                                <ButtonBase sx={{ borderRadius: '3px' }}>
                                     <Avatar variant="rounded" className={classes.headerAvatar} {...bindToggle(popupState)}>
                                         <IconSearch stroke={1.5} size="1.2rem" />
                                     </Avatar>
@@ -125,7 +125,7 @@ const SearchSection = () => {
                                                             }
                                                             endAdornment={
                                                                 <InputAdornment position="end">
-                                                                    <ButtonBase sx={{ borderRadius: '12px' }}>
+                                                                    <ButtonBase sx={{ borderRadius: '3px' }}>
                                                                         <Avatar variant="rounded" className={classes.headerAvatar}>
                                                                             <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
                                                                         </Avatar>
@@ -135,7 +135,7 @@ const SearchSection = () => {
                                                                             ml: 2
                                                                         }}
                                                                     >
-                                                                        <ButtonBase sx={{ borderRadius: '12px' }}>
+                                                                        <ButtonBase sx={{ borderRadius: '3px' }}>
                                                                             <Avatar
                                                                                 variant="rounded"
                                                                                 className={classes.closeAvatar}
@@ -177,7 +177,7 @@ const SearchSection = () => {
                     }
                     endAdornment={
                         <InputAdornment position="end">
-                            <ButtonBase sx={{ borderRadius: '12px' }}>
+                            <ButtonBase sx={{ borderRadius: '3px' }}>
                                 <Avatar variant="rounded" className={classes.headerAvatar}>
                                     <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
                                 </Avatar>

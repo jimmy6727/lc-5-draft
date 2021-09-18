@@ -10,7 +10,7 @@ import AnimateButton from './../../../../ui-component/extended/AnimateButton';
 // style constant
 const useStyles = makeStyles((theme) => ({
     card: {
-        background: theme.palette.warning.light,
+        background: theme.palette.primary.dark,
         marginTop: '16px',
         marginBottom: '16px',
         overflow: 'hidden',
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
             width: '200px',
             height: '200px',
             border: '19px solid ',
-            borderColor: theme.palette.warning.main,
+            borderColor: theme.palette.primary[200],
             borderRadius: '50%',
             top: '65px',
             right: '-150px'
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
             width: '200px',
             height: '200px',
             border: '3px solid ',
-            borderColor: theme.palette.warning.main,
+            borderColor: theme.palette.primary[800],
             borderRadius: '50%',
             top: '145px',
             right: '-70px'
@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         color: theme.palette.grey[800],
-        backgroundColor: theme.palette.warning.main,
+        backgroundColor: theme.palette.primary.main,
         textTransform: 'capitalize',
         boxShadow: 'none',
         '&:hover': {
-            backgroundColor: theme.palette.warning.dark
+            backgroundColor: theme.palette.primary.light
         }
     }
 }));
@@ -63,11 +63,11 @@ const UpgradePlanCard = () => {
             <CardContent>
                 <Grid container direction="column" spacing={2}>
                     <Grid item>
-                        <Typography variant="h4">Upgrade to Pro</Typography>
+                        <Typography variant="h4">Sample Announcement</Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant="subtitle2" className={classes.tagLine}>
-                            For more premium pages & features
+                            Check out our new feature
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -80,7 +80,7 @@ const UpgradePlanCard = () => {
                                     variant="contained"
                                     className={classes.button}
                                 >
-                                    Go Premium
+                                    Check it out
                                 </Button>
                             </AnimateButton>
                         </Stack>

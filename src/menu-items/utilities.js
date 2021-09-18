@@ -15,52 +15,68 @@ const icons = {
 
 export const utilities = {
     id: 'utilities',
-    title: 'Utilities',
+    title: 'Developer Tools',
     type: 'group',
     children: [
         {
-            id: 'util-typography',
-            title: 'Typography',
+            id: 'default',
+            title: 'Sample Dashboard',
             type: 'item',
-            url: '/utils/util-typography',
-            icon: icons['IconTypography'],
+            url: '/dashboard/default',
+            icon: icons['IconDashboard'],
             breadcrumbs: false
         },
         {
-            id: 'util-color',
-            title: 'Color',
-            type: 'item',
-            url: '/utils/util-color',
-            icon: icons['IconPalette'],
-            breadcrumbs: false
-        },
-        {
-            id: 'util-shadow',
-            title: 'Shadow',
-            type: 'item',
-            url: '/utils/util-shadow',
-            icon: icons['IconShadow'],
-            breadcrumbs: false
-        },
-        {
-            id: 'icons',
-            title: 'Icons',
+            id: 'authentication',
+            title: 'UI Components',
             type: 'collapse',
-            icon: icons['IconWindmill'],
-            children: [
+            icon: icons['IconKey'],
+            children:[
                 {
-                    id: 'tabler-icons',
-                    title: 'Tabler Icons',
+                    id: 'util-typography',
+                    title: 'Typography',
                     type: 'item',
-                    url: '/icons/tabler-icons',
+                    url: '/utils/util-typography',
+                    icon: icons['IconTypography'],
                     breadcrumbs: false
                 },
                 {
-                    id: 'material-icons',
-                    title: 'Material Icons',
+                    id: 'util-color',
+                    title: 'Color',
                     type: 'item',
-                    url: '/icons/material-icons',
+                    url: '/utils/util-color',
+                    icon: icons['IconPalette'],
                     breadcrumbs: false
+                },
+                {
+                    id: 'util-shadow',
+                    title: 'Shadow',
+                    type: 'item',
+                    url: '/utils/util-shadow',
+                    icon: icons['IconShadow'],
+                    breadcrumbs: false
+                },
+                {
+                    id: 'icons',
+                    title: 'Icons',
+                    type: 'collapse',
+                    icon: icons['IconWindmill'],
+                    children: [
+                        {
+                            id: 'tabler-icons',
+                            title: 'Tabler Icons',
+                            type: 'item',
+                            url: '/icons/tabler-icons',
+                            breadcrumbs: false
+                        },
+                        {
+                            id: 'material-icons',
+                            title: 'Material Icons',
+                            type: 'item',
+                            url: '/icons/material-icons',
+                            breadcrumbs: false
+                        }
+                    ]
                 }
             ]
         }

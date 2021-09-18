@@ -141,7 +141,7 @@ const NotificationSection = () => {
     return (
         <React.Fragment>
             <Box component="span" className={classes.box}>
-                <ButtonBase sx={{ borderRadius: '12px' }}>
+                <ButtonBase sx={{ borderRadius: '3px' }}>
                     <Avatar
                         variant="rounded"
                         className={classes.headerAvatar}
