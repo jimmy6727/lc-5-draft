@@ -106,10 +106,13 @@ const NavItem = ({ item, level }) => {
             target={itemTarget}
             style={{ paddingLeft: level * 23 + 'px' }}
         >
+            {level === 1 ?
             <ListItemIcon className={itemIconClass} color="theme.palette.grey[600]">{itemIcon}</ListItemIcon>
+            :
+            null}
             <ListItemText
                 primary={
-                    <Typography variant="h3" color="theme.palette.grey[600]">
+                    <Typography variant={level === 1 ? "h3" : "h5"} color="theme.palette.grey[600]">
                         {item.title}
                     </Typography>
                 }

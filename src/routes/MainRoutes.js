@@ -37,7 +37,7 @@ const MainRoutes = () => {
             path={[
                 '/dashboard/default',
                 '/dashboard/overview',
-                // '/communities',
+                '/communities',
                 '/community/1',
                 '/community/2',
                 '/campaign/1',
@@ -59,7 +59,7 @@ const MainRoutes = () => {
                 <Switch location={location} key={location.pathname}>
                     <Route path="/dashboard/default" component={DashboardDefault} />
                     <Route path="/dashboard/overview" component={OverviewHome} />
-                    {/* <Route path="/communities" component={CommunitiesHome} /> */}
+                    <Route path="/communities" component={CommunitiesHome} />
                     <Route path="/community/1" component={SingleCommunityHome} />
                     <Route path="/community/2" component={SingleCommunityHome} />
                     <Route path="/campaign/1" component={SingleCampaignHome} />

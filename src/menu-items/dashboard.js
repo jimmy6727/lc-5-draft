@@ -37,18 +37,28 @@ export const dashboard = {
             icon: icons['HomeWorkIcon'],
             children: [
                 {
+                    id: 'communities',
+                    title: 'Communities Home',
+                    type: 'item',
+                    url: '/communities',
+                    target: true,
+                    breadcrumbs: false
+                },
+                {
                     id: 'community1',
                     title: 'Community 1',
                     type: 'item',
                     url: '/community/1',
-                    target: true
+                    target: true,
+                    breadcrumbs: false
                 },
                 {
                     id: 'community2',
                     title: 'community 2',
                     type: 'item',
                     url: '/community/1',
-                    target: true
+                    target: true,
+                    breadcrumbs: false
                 }
             ],
             breadcrumbs: false
@@ -89,21 +99,24 @@ export const dashboard = {
                     title: 'General',
                     type: 'item',
                     url: '/settings/general',
-                    target: true
+                    target: true,
+                    breadcrumbs: false
                 },
                 {
                     id: 'statements',
                     title: 'Statements',
                     type: 'item',
                     url: '/settings/statements',
-                    target: true
+                    target: true,
+                    breadcrumbs: false
                 },
                 {
                     id: 'PaymentMethods',
                     title: 'Payment Methods',
                     type: 'item',
                     url: '/settings/payment_methods',
-                    target: true
+                    target: true,
+                    breadcrumbs: false
                 }
             ],
             breadcrumbs: false

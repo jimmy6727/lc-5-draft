@@ -126,7 +126,7 @@ const NavCollapse = ({ menu, level }) => {
                 <ListItemIcon className={menuIconClass}>{menuIcon}</ListItemIcon>
                 <ListItemText
                     primary={
-                        <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" className={classes.listItemTypography}>
+                        <Typography variant={selected === menu.id ? 'h3' : 'h3'} color={selected === menu.id ? "theme.palette.grey[600]" : "theme.palette.primary.dark"} className={classes.listItemTypography}>
                             {menu.title}
                         </Typography>
                     }
