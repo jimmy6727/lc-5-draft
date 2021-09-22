@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import APIClient from '../../../../utils/APIClient';
+import sleep from '../../../../utils/util';
 
 // material-ui
 import { makeStyles } from '@material-ui/styles';
@@ -81,8 +83,55 @@ const useStyles = makeStyles((theme) => ({
 //-----------------------|| SEARCH INPUT ||-----------------------//
 
 const SearchSection = () => {
+    const [isLoading, setLoading] = useState(null);
     const classes = useStyles();
     const [value, setValue] = useState('');
+    const [residents, setResidents] = useState([]);
+    const [communities, setCommunities] = useState([]);
+    const [communitySearchResults, setCommunitySearchResults] = useState([]);
+    const [residentsSearchResults, setResidentsSearchResults] = useState([]);
+    const [searching, setSearching] = useState(false);
+
+    useEffect(() => {
+        const fetchResidents = async () => {
+            APIClient.get('/residents/list/', {params: {'account_id':'0014S000001xlxoQAA'}})
+            .then(res => {
+                return res.data.data;
+            })
+            .then(data => {
+                    setResidents(data)
+                })
+        };
+
+        fetchResidents();
+    }, [])
+
+    useEffect(() => {
+        const fetchCommunities = async () => {
+            APIClient.get('/rental_community/list/', {params: {'account_id':'0014S000001xlxoQAA'}})
+            .then(res => {
+                return res.data.data;
+            })
+            .then(data => {
+                    setCommunities(data)
+                })
+        };
+
+        fetchCommunities();
+    }, [])
+
+    useEffect(() => {
+        setCommunitySearchResults(communities.filter(ele => ele.name.toLowerCase().indexOf(value) > -1));
+        setResidentsSearchResults(residents.filter(ele => ele.firstname.toLowerCase().indexOf(value) > -1 || ele.lastname.toLowerCase().indexOf(value) > -1));
+    }, [value])
+
+    useEffect(() => {
+        if (value.length > 0) {
+            setSearching(true)
+        } else {
+            setSearching(false)
+        }
+    }, [value])
 
     return (
         <React.Fragment>

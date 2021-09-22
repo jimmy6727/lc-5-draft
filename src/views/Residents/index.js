@@ -8,7 +8,7 @@ import MainCard from '../../ui-component/cards/MainCard';
 import ResidentsTable from '../../ui-component/ResidentsTable';
 import { gridSpacing } from '../../store/constant';
 import APIClient from '../../utils/APIClient';
-import sleep from '../../utils/util'
+import sleep from '../../utils/util';
 
 
 
@@ -35,14 +35,13 @@ const ResidentsHome = () => {
             //         console.log(community.address__c)
             //     })}
             // }
-            console.log("Residents data:")
+            // console.log("Residents data:")
             // console.log(communityData)
             setLoading(false);
         }
         
         fetchCommunities();
     }, []);
-
     
     return (
         <Grid container spacing={gridSpacing}>
