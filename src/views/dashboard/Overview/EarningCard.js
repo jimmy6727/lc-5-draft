@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary[200]
     },
     avatarCircle: {
-        cursor: 'pointer',
+        // cursor: 'pointer',
         ...theme.typography.smallAvatar,
         backgroundColor: theme.palette.secondary[200],
         color: theme.palette.secondary.dark

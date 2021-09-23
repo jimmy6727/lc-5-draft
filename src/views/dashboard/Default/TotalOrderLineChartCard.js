@@ -77,7 +77,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         marginRight: '8px',
         marginTop: '14px',
-        marginBottom: '6px'
+        marginBottom: '6px',
+        cursor: 'default'
     },
     subHeading: {
         fontSize: '1rem',
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatarCircle: {
         ...theme.typography.smallAvatar,
-        cursor: 'pointer',
+        // cursor: 'pointer',
         backgroundColor: theme.palette.primary[200],
         color: theme.palette.primary.dark
     },
@@ -152,7 +153,12 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                         </Grid>
                                         <Grid item>
                                             <Avatar className={classes.avatarCircle}>
-                                                <ArrowDownwardIcon fontSize="inherit" className={classes.circleIcon} />
+                                                {/* <ArrowDownwardIcon fontSize="inherit" className={classes.circleIcon} /> */}
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trending-down" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#75b7d3" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                    <polyline points="3 7 9 13 13 9 21 17" />
+                                                    <polyline points="21 10 21 17 14 17" />
+                                                </svg>
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>

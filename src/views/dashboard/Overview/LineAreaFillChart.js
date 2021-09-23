@@ -76,7 +76,7 @@ const LineAreaFillChart = () => {
                             </Grid>       
                             <Grid item alignItems="right" justifyContent="end">
 
-                                <Grid container alignItems="end" justifyContent="end">
+                                <Grid container alignItems="center" justifyContent="center">
                                     <ArrowUpwardIcon sx={{ color: theme.palette.success.main}}></ArrowUpwardIcon>
                                     <Typography variant="h2" sx={{ color: theme.palette.success[200] }}>
                                         5%

@@ -8,62 +8,75 @@ export function themeTypography(theme) {
         h6: {
             fontWeight: 500,
             color: theme.heading,
-            fontSize: '0.75rem'
+            fontSize: '0.75rem',
+            cursor: 'default'
         },
         h5: {
             fontSize: '0.875rem',
             color: theme.heading,
-            fontWeight: 500
+            fontWeight: 500,
+            cursor: 'default'
         },
         h4: {
             fontSize: '1rem',
             color: theme.heading,
-            fontWeight: 600
+            fontWeight: 600,
+            cursor: 'default'
         },
         h3: {
             fontSize: '1.25rem',
             color: theme.heading,
-            fontWeight: 600
+            fontWeight: 600,
+            cursor: 'default'
         },
         h2: {
             fontSize: '1.5rem',
             color: theme.heading,
-            fontWeight: 400
+            fontWeight: 400,
+            cursor: 'default'
         },
         h2_light: {
             fontSize: '1.5rem',
             color: theme.heading,
-            fontWeight: 400
+            fontWeight: 400,
+            cursor: 'default'
         },
         h1: {
             fontSize: '2.125rem',
             color: theme.heading,
-            fontWeight: 700
+            fontWeight: 700,
+            cursor: 'default'
         },
         h1_light: {
             fontSize: '2.125rem',
             color: theme.heading,
-            fontWeight: 400
+            fontWeight: 400,
+            cursor: 'default'
         },
         subtitle1: {
             fontSize: '1rem',
             color: theme.heading,
-            fontWeight: 400
+            fontWeight: 400,
+            cursor: 'default'
         },
         subtitle2: {
             fontSize: '0.875rem',
             fontWeight: 500,
-            color: theme.textDark
+            color: theme.textDark,
+            cursor: 'default',
+            cursor: 'default'
         },
         subtitle3: {
             fontSize: '0.75rem',
             fontWeight: 400,
-            color: theme.darkTextSecondary
+            color: theme.darkTextSecondary,
+            cursor: 'default'
         },
         caption: {
             fontSize: '0.75rem',
             color: theme.darkTextSecondary,
-            fontWeight: 400
+            fontWeight: 400,
+            cursor: 'default'
         },
         body1: {
             fontSize: '0.875rem',
@@ -122,7 +135,7 @@ export function themeTypography(theme) {
             textTransform: 'capitalize'
         },
         commonAvatar: {
-            cursor: 'pointer',
+            // cursor: 'pointer',
             borderRadius: '8px'
         },
         smallAvatar: {

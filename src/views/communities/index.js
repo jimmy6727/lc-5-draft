@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // material-ui
 import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
@@ -7,7 +8,8 @@ import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
 import MainCard from '../../ui-component/cards/MainCard';
 import { gridSpacing } from '../../store/constant';
 import APIClient from '../../utils/APIClient';
-import sleep from '../../utils/util'
+import sleep from '../../utils/util';
+
 
 
 
@@ -16,6 +18,7 @@ import sleep from '../../utils/util'
 const Communities = () => {
     const [isLoading, setLoading] = useState(null);
     const [communityData, setCommunityData] = useState([]);
+    const history = useHistory();
 
     useEffect(() => {
         const fetchCommunities = async () => {
@@ -41,7 +44,6 @@ const Communities = () => {
         
         fetchCommunities();
     }, []);
-
     
     return (
         <Grid container spacing={gridSpacing}>
@@ -59,8 +61,8 @@ const Communities = () => {
                             </Grid>
                         </Grid> : 
                         <Grid container spacing={gridSpacing}>
-                            <Grid item xs={12} md={6} lg={4}>
-                                <MainCard>
+                            {/* <Grid item xs={12} md={6} lg={4}>
+                                <MainCard >
                                     <Grid container spacing={gridSpacing} justifyContent='left'>
                                         <Grid item mt={2} item xs={12} >
                                             <Typography variant='h2' align='center'>{communityData.length.toString()}</Typography>
@@ -82,11 +84,11 @@ const Communities = () => {
                                     </Grid>
                                     
                                 </MainCard>
-                            </Grid>
+                            </Grid> */}
                             {communityData.map((item) => (
 
-                                <Grid key={item.sfid} item xs={12} md={6} lg={4}>
-                                    <MainCard>
+                                <Grid key={item.sfid} item xs={12} md={6} lg={4} onClick={() => history.push(`/free/community/${item.id}`)}>
+                                    <MainCard >
                                         <Grid container spacing={gridSpacing} justifyContent='left'>
                                             <Grid item mt={2} item xs={12} >
                                                 <Typography variant='h2' align='center'>{item.address__c}</Typography>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import APIClient from '../../../../utils/APIClient';
-import sleep from '../../../../utils/util';
 
 // material-ui
 import { makeStyles } from '@material-ui/styles';
@@ -14,6 +13,7 @@ import Transitions from '../../../../ui-component/extended/Transitions';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+import SearchResults from '../../../../views/search';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -83,14 +83,13 @@ const useStyles = makeStyles((theme) => ({
 //-----------------------|| SEARCH INPUT ||-----------------------//
 
 const SearchSection = () => {
-    const [isLoading, setLoading] = useState(null);
     const classes = useStyles();
     const [value, setValue] = useState('');
     const [residents, setResidents] = useState([]);
     const [communities, setCommunities] = useState([]);
     const [communitySearchResults, setCommunitySearchResults] = useState([]);
     const [residentsSearchResults, setResidentsSearchResults] = useState([]);
-    const [searching, setSearching] = useState(false);
+    const [searching, setSearching] = useState('hidden');
 
     useEffect(() => {
         const fetchResidents = async () => {
@@ -127,14 +126,17 @@ const SearchSection = () => {
 
     useEffect(() => {
         if (value.length > 0) {
-            setSearching(true)
+            setSearching('visible')
         } else {
-            setSearching(false)
+            setSearching('hidden')
         }
     }, [value])
 
     return (
         <React.Fragment>
+            <Box component="div" sx={{ visibility: `${searching}` }}>
+                <SearchResults residents={residentsSearchResults} communities={communitySearchResults}/>
+            </Box>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <PopupState variant="popper" popupId="demo-popup-popper">
                     {(popupState) => (

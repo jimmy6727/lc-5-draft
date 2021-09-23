@@ -65,10 +65,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '8px'
     },
     avatarRight: {
+        cursor: 'pointer',
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         backgroundColor: theme.palette.secondary.dark,
-        color: theme.palette.secondary[200],
+        color: theme.palette.secondary.light,
         zIndex: 1
     },
     cardHeading: {
@@ -76,7 +77,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 500,
         marginRight: '8px',
         marginTop: '14px',
-        marginBottom: '6px'
+        marginBottom: '6px',
+        cursor: 'default'
     },
     subHeading: {
         fontSize: '1rem',
@@ -84,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary[200]
     },
     avatarCircle: {
-        cursor: 'pointer',
+        // cursor: 'pointer',
         ...theme.typography.smallAvatar,
         backgroundColor: theme.palette.secondary[200],
         color: theme.palette.secondary.dark
@@ -176,7 +178,12 @@ const EarningCard = ({ isLoading }) => {
                                 </Grid>
                                 <Grid item>
                                     <Avatar className={classes.avatarCircle}>
-                                        <ArrowUpwardIcon fontSize="inherit" className={classes.circleIcon} />
+                                        {/* <ArrowUpwardIcon fontSize="inherit" className={classes.circleIcon} /> */}
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trending-up" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="#247AA1" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <polyline points="3 17 9 11 13 15 21 7" />
+                                            <polyline points="14 7 21 7 21 14" />
+                                        </svg>
                                     </Avatar>
                                 </Grid>
                             </Grid>
