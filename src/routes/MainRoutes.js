@@ -50,7 +50,7 @@ const MainRoutes = () => {
                 '/overview',
                 '/communities',
                 '/community/:id',
-                '/campaign/1',
+                '/campaigns/:id',
                 '/residents',
                 '/team',
                 '/settings/general',
@@ -70,7 +70,7 @@ const MainRoutes = () => {
                     <Route path="/overview" component={OverviewHome} />
                     <Route path="/communities" component={CommunitiesHome} />
                     <Route path="/community/:id" component={SingleCommunityHome} />
-                    <Route path="/campaign/1" component={SingleCampaignHome} />
+                    <Route path="/campaigns/:id" component={SingleCampaignHome} />
                     <Route path="/residents" component={ResidentsHome} />
                     <Route path="/team" component={TeamHome} />
                     <Route path="/settings/general" component={SettingsGeneral} />

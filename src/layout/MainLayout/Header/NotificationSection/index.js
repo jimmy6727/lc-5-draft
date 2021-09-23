@@ -140,21 +140,7 @@ const NotificationSection = () => {
 
     return (
         <React.Fragment>
-            <Box component="span" className={classes.box}>
-                <ButtonBase sx={{ borderRadius: '3px' }}>
-                    <Avatar
-                        variant="rounded"
-                        className={classes.headerAvatar}
-                        ref={anchorRef}
-                        aria-controls={open ? 'menu-list-grow' : undefined}
-                        aria-haspopup="true"
-                        onClick={handleToggle}
-                        color="inherit"
-                    >
-                        <IconBell stroke={1.5} size="1.3rem" />
-                    </Avatar>
-                </ButtonBase>
-            </Box>
+            
             <Popper
                 placement={matchesXs ? 'bottom' : 'bottom-end'}
                 open={open}

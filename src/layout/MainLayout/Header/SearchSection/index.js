@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // material-ui
 import { makeStyles } from '@material-ui/styles';
@@ -6,12 +6,17 @@ import { Avatar, Box, ButtonBase, Card, CardContent, Grid, InputAdornment, Outli
 
 // third-party
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 // project imports
 import Transitions from '../../../../ui-component/extended/Transitions';
+import CommunitiesService from '../../../../utils/CommunitiesService';
+import RewardsCampaignsService from '../../../../utils/RewardsCampaignsService';
+import ResidentsService from '../../../../utils/ResidentsService';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+import SearchResults from '../../../../views/search';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -61,16 +66,17 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1100,
         width: '99%',
         top: '-55px !important',
-        padding: '0 12px',
+        padding: '12px 12px',
         [theme.breakpoints.down('sm')]: {
             padding: '0 10px'
         }
     },
     cardContent: {
-        padding: '12px !important'
+        padding: '16px !important',
     },
     card: {
         background: '#fff',
+        margin: '16px',
         [theme.breakpoints.down('sm')]: {
             border: 0,
             boxShadow: 'none'
@@ -82,10 +88,80 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchSection = () => {
     const classes = useStyles();
-    const [value, setValue] = useState('');
+    const [searchInput, setSearchInput] = useState('');
+    const [residents, setResidents] = useState([]);
+    const [rewardsCampaigns, setrewardsCampaigns] = useState([]);
+    const [communities, setCommunities] = useState([]);
+    const [rewardsCampaignsSearchResults, setRewardsCampaignsResults] = useState([]);
+    const [communitySearchResults, setCommunitySearchResults] = useState([]);
+    const [residentsSearchResults, setResidentsSearchResults] = useState([]);
+    const [searching, setSearching] = useState('hidden');
+
+    const searchInputField = useRef(null)
+
+    const toggleSearch = () => {
+        if (searching == 'hidden') {
+            console.log('showing')
+            setSearching('visible')
+        } else {
+            console.log('hiding')
+            setSearchInput("")
+        }
+        searchInputField.current.focus()
+    }
+    
+    useHotkeys('command+k', () => toggleSearch());
+
+    useEffect(() => {
+        ResidentsService.forAccount('0014S000001xlxoQAA')    
+        .then(res => {
+            return res.data.data;
+        })
+        .then(data => {
+            setResidents(data)
+        })
+    }, [])
+
+    useEffect(() => {
+        CommunitiesService.forAccount('0014S000001xlxoQAA')    
+        .then(res => {
+            return res.data.data;
+        })
+        .then(data => {
+            setCommunities(data)
+        })
+    }, [])
+
+    useEffect(() => {
+        RewardsCampaignsService.forAccount('0014S000001xlxoQAA')    
+        .then(res => {
+            return res.data.data;
+        })
+        .then(data => {
+            setrewardsCampaigns(data)
+        })
+    }, [])
+
+    useEffect(() => {
+        setCommunitySearchResults(communities.filter(ele => ele.name.toLowerCase().match("^"+searchInput)));
+        setRewardsCampaignsResults(rewardsCampaigns.filter(ele => ele.name.toLowerCase().match("^"+searchInput)));
+        setResidentsSearchResults(residents.filter(ele => ele.firstname.toLowerCase().match("^"+searchInput) || ele.lastname.toLowerCase().match("^"+searchInput)));
+    }, [searchInput])
+
+    useEffect(() => {
+        if (searchInput.length > 0) {
+            setSearching('visible')
+        } else {
+            setSearching('hidden')
+        }
+    }, [searchInput])
 
     return (
         <React.Fragment>
+
+            <Box component="div" sx={{ visibility: `${searching}` }}>
+                <SearchResults  residents={residentsSearchResults} communities={communitySearchResults} rewardsCampaigns={rewardsCampaignsSearchResults}/>
+            </Box>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <PopupState variant="popper" popupId="demo-popup-popper">
                     {(popupState) => (
@@ -111,8 +187,8 @@ const SearchSection = () => {
                                                         <OutlinedInput
                                                             className={classes.searchControl}
                                                             id="input-search-header"
-                                                            value={value}
-                                                            onChange={(e) => setValue(e.target.value)}
+                                                            value={searchInput}
+                                                            onChange={(e) => setSearchInput(e.target.value)}
                                                             placeholder="Search"
                                                             startAdornment={
                                                                 <InputAdornment position="start">
@@ -166,10 +242,11 @@ const SearchSection = () => {
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <OutlinedInput
                     className={classes.searchControl}
+                    inputRef={searchInputField}
                     id="input-search-header"
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    placeholder="Search"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    placeholder="Search (⌘K)"
                     startAdornment={
                         <InputAdornment position="start">
                             <IconSearch stroke={1.5} size="1rem" className={classes.startAdornment} />

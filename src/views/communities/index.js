@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 // material-ui
 import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
@@ -16,6 +16,7 @@ import sleep from '../../utils/util'
 //-----------------------|| COMMUNITIES HOME ||-----------------------//
 
 const CommunitiesHome = () => {
+    const history = useHistory();
     const [isLoading, setLoading] = useState(null);
     const [communityData, setCommunityData] = useState([]);
 
@@ -49,7 +50,7 @@ const CommunitiesHome = () => {
                         <Grid container spacing={gridSpacing}>
                             {communityData.map((item) => (
 
-                                <Grid key={item.sfid} item xs={12} md={6} lg={4}>
+                                <Grid key={item.sfid} item xs={12} md={6} lg={4} onClick={() => history.push(`/community/${item.sfid}`)}>
                                     <MainCard>
                                         <Grid container spacing={gridSpacing} justifyContent='left'>
                                             <Grid item mt={2} item xs={12} >

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 // material-ui
 import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
@@ -10,8 +10,6 @@ import ResidentSortableMetrics from '../../ui-component/ResidentSortableMetrics'
 import CommunitySpendingGraph from './CommunitySpendingGraph'
 import ResidentsTable from '../../ui-component/ResidentsTable';
 import { gridSpacing } from '../../store/constant';
-import APIClient from '../../utils/APIClient';
-import sleep from '../../utils/util'
 
 // Backend
 import CommunitiesService from '../../utils/CommunitiesService';
@@ -22,6 +20,7 @@ import RewardsCampaignService from '../../utils/RewardsCampaignsService';
 //-----------------------|| COMMUNITIES HOME ||-----------------------//
 
 const SingleCommunity = () => {
+    const history = useHistory();
     const { id } = useParams();
     const [isLoading, setLoading] = useState(true);
     const [communityData, setCommunityData] = useState(null);
@@ -73,28 +72,27 @@ const SingleCommunity = () => {
                                 {communityCampaignsData.map((campaign) => (
 
                                     <Grid key={campaign.sfid} item xs={12} md={6} lg={4}>
-                                        <MainCard>
-                                            <Grid container spacing={gridSpacing} justifyContent='left'>
-                                                <Grid item mt={2} item xs={12} >
-                                                    <Typography variant='h2' align='center'>{campaign.name}</Typography>
-                                                </Grid>
-                                            
-                                                <Grid item xs={5} >
-                                                    <Typography variant='subtitle1'>
-                                                        4 Campaigns
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item xs={2}>
-                                                    <Divider orientation="vertical"/>
-                                                </Grid>
-                                                <Grid item xs={5} >
-                                                    <Typography variant='subtitle1'>
-                                                        45 residents
-                                                    </Typography>
-                                                </Grid>
-                                            </Grid>
-                                            
-                                        </MainCard>
+                                            <MainCard onClick={() => history.push(`/campaigns/${campaign.sfid}`)}>
+                                                <Grid container spacing={gridSpacing} justifyContent='left'>
+                                                    <Grid item mt={2} item xs={12} >
+                                                        <Typography variant='h2' align='center'>{campaign.name}</Typography>
+                                                    </Grid>
+                                                
+                                                    <Grid item xs={5} >
+                                                        <Typography variant='subtitle1'>
+                                                            4 Campaigns
+                                                        </Typography>
+                                                    </Grid>
+                                                    <Grid item xs={2}>
+                                                        <Divider orientation="vertical"/>
+                                                    </Grid>
+                                                    <Grid item xs={5} >
+                                                        <Typography variant='subtitle1'>
+                                                            45 residents
+                                                        </Typography>
+                                                    </Grid>
+                                                </Grid>    
+                                            </MainCard>
                                     </Grid>
                                     ))
                                 }
