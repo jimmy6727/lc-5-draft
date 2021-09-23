@@ -4,6 +4,7 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import CommunitiesService from '../utils/CommunitiesService';
 
 // constant
 const icons = {
@@ -16,6 +17,22 @@ const icons = {
 };
 
 //-----------------------|| DASHBOARD MENU ITEMS ||-----------------------//
+const community_sidemenu_choices = []
+CommunitiesService.forAccount('0014S000001xlxoQAA')
+.then(res => {
+    {res.data.data.map((community) => {
+        console.log(community.address__c)
+        community_sidemenu_choices.push({
+            id: 'community-'+community.sfid,
+            title: community.name,
+            type: 'item',
+            url: '/community/'+community.sfid,
+            target: true,
+            breadcrumbs: false
+        })
+    })}
+
+})
 
 export const dashboard = {
     id: 'dashboard',
@@ -25,7 +42,7 @@ export const dashboard = {
             id: 'overview',
             title: 'Overview',
             type: 'item',
-            url: '/dashboard/overview',
+            url: '/overview',
             icon: icons['EqualizerIcon'],
             breadcrumbs: false
         },
@@ -35,32 +52,7 @@ export const dashboard = {
             type: 'collapse',
             url: '/communities',
             icon: icons['HomeWorkIcon'],
-            children: [
-                {
-                    id: 'communities',
-                    title: 'Communities Home',
-                    type: 'item',
-                    url: '/communities',
-                    target: true,
-                    breadcrumbs: false
-                },
-                {
-                    id: 'community1',
-                    title: 'Community 1',
-                    type: 'item',
-                    url: '/community/1',
-                    target: true,
-                    breadcrumbs: false
-                },
-                {
-                    id: 'community2',
-                    title: 'community 2',
-                    type: 'item',
-                    url: '/community/1',
-                    target: true,
-                    breadcrumbs: false
-                }
-            ],
+            children: community_sidemenu_choices,
             breadcrumbs: false
         },
         {

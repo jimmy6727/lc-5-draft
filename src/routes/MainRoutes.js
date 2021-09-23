@@ -4,6 +4,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 // project imports
 import MainLayout from './../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
+import CommunitiesService from '../utils/CommunitiesService';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
@@ -29,17 +30,26 @@ const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 
 //-----------------------|| MAIN ROUTING ||-----------------------//
 
+
 const MainRoutes = () => {
     const location = useLocation();
+    const community_routes = []
+    CommunitiesService.forAccount('0014S000001xlxoQAA')
+    .then(res => {
+        {res.data.data.map((community) => {
+            console.log(community.address__c)
+            community_routes.push("/community/"+community.sfid);
+        })}
 
+        console.log("got community routes: "+community_routes)
+    })
     return (
         <Route
             path={[
                 '/dashboard/default',
-                '/dashboard/overview',
+                '/overview',
                 '/communities',
-                '/community/1',
-                '/community/2',
+                '/community/:id',
                 '/campaign/1',
                 '/residents',
                 '/team',
@@ -51,17 +61,15 @@ const MainRoutes = () => {
                 '/utils/util-shadow',
                 '/icons/tabler-icons',
                 '/icons/material-icons',
-
                 '/sample-page'
             ]}
         >
             <MainLayout>
                 <Switch location={location} key={location.pathname}>
                     <Route path="/dashboard/default" component={DashboardDefault} />
-                    <Route path="/dashboard/overview" component={OverviewHome} />
+                    <Route path="/overview" component={OverviewHome} />
                     <Route path="/communities" component={CommunitiesHome} />
-                    <Route path="/community/1" component={SingleCommunityHome} />
-                    <Route path="/community/2" component={SingleCommunityHome} />
+                    <Route path="/community/:id" component={SingleCommunityHome} />
                     <Route path="/campaign/1" component={SingleCampaignHome} />
                     <Route path="/residents" component={ResidentsHome} />
                     <Route path="/team" component={TeamHome} />

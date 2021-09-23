@@ -14,6 +14,8 @@ import LineAreaFillChart from '../views/dashboard/Overview/LineAreaFillChart';
 import SkeletonTotalGrowthBarChart from './cards/Skeleton/TotalGrowthBarChart';
 import MainCard from './cards/MainCard';
 import { gridSpacing } from '../store/constant';
+import CommunitiesService from '../utils/CommunitiesService';
+import sleep from '../utils/util'
 
 //assets
 import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined';
@@ -36,16 +38,7 @@ const selectTimePeriodChoices = [
     }
 ];
 
-const communitySelect = [
-    {
-        value: 'com1',
-        label: '123 Wonderful Community'
-    },
-    {
-        value: 'com2',
-        label: 'Greenbriar'
-    },
-];
+
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -88,11 +81,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-//-----------------------|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||-----------------------//
+//-----------------------|| Sortable metrics for portfolio, community, campaign level ||-----------------------//
 
-const ResidentSortableMetrics = ({ isLoading }) => {
+const ResidentSortableMetrics = ({ isLoading, showCommunitiesFilter }) => {
+    const communitySelectInitialVal = [
+        {
+            value: 'default',
+            label: 'All Communities'
+        }
+    ];
+
     const [value, setValue] = React.useState('month');
-    const [communityValue, setCommunityValue] = React.useState('com1');
+    const [communityValue, setCommunityValue] = React.useState('default');
+    const [communitySelect, setCommunitySelection] = React.useState(communitySelectInitialVal);
+
     const theme = useTheme();
     const classes = useStyles();
 
@@ -136,6 +138,22 @@ const ResidentSortableMetrics = ({ isLoading }) => {
             }
         };
 
+        
+        CommunitiesService.forAccount('0014S000001xlxoQAA')
+        .then(res => {
+            var new_choices = communitySelectInitialVal;
+            {res.data.data.map((community) => {
+                console.log(community.address__c)
+                new_choices.push({
+                    value: community.sfid,
+                    label: community.name
+                })
+            })}
+            
+            setCommunitySelection(new_choices)
+            return new_choices;
+        })
+
         // do not load chart when loading
         if (!isLoading) {
             ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
@@ -149,7 +167,7 @@ const ResidentSortableMetrics = ({ isLoading }) => {
             ) : (
                 <MainCard>
                     <Grid container spacing={gridSpacing}>
-                        
+                        {showCommunitiesFilter ?
                         <Grid item>
                             <Grid container alignItems="center" justifyContent="space-between">
                                 <Grid item>
@@ -168,7 +186,9 @@ const ResidentSortableMetrics = ({ isLoading }) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-
+                        :
+                        null
+                        }
                         <Grid item>
 
                             <Grid container alignItems="center" justifyContent="space-between">

@@ -28,7 +28,7 @@ const Dashboard = () => {
                         <Typography variant="h1_light">Overview</Typography>
                     </Grid>
                     <Grid item xs={12} >
-                        <ResidentSortableMetrics isLoading={isLoading} />
+                        <ResidentSortableMetrics isLoading={isLoading} showCommunitiesFilter={true}/>
                     </Grid>
                 </Grid>
             </Grid>

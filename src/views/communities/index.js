@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 
 // material-ui
 import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
@@ -7,39 +8,26 @@ import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
 import MainCard from '../../ui-component/cards/MainCard';
 import { gridSpacing } from '../../store/constant';
 import APIClient from '../../utils/APIClient';
+import CommunitiesService from '../../utils/CommunitiesService';
 import sleep from '../../utils/util'
 
 
 
 //-----------------------|| COMMUNITIES HOME ||-----------------------//
 
-const Communities = () => {
+const CommunitiesHome = () => {
     const [isLoading, setLoading] = useState(null);
     const [communityData, setCommunityData] = useState([]);
 
     useEffect(() => {
-        const fetchCommunities = async () => {
-            setLoading(true);
-            await sleep(2000);
-            APIClient.get('/rental_community/list/', {params: {'account_id':'0014S000001xlxoQAA'}})
-            .then(res => {
-                console.log(res.data.data);
-                return res.data.data;
-            })
-            .then(data => {
-                setCommunityData(data)
-            })
-            // if (communityData.length !== 0){
-            //     {communityData.map((community) => {
-            //         console.log(community.address__c)
-            //     })}
-            // }
-            console.log("Community data:")
-            console.log(communityData)
+        // Get communities for account
+        setLoading(true);
+        CommunitiesService.forAccount('0014S000001xlxoQAA')
+        .then(res => {
+            setCommunityData(res.data.data)
             setLoading(false);
-        }
+        })
         
-        fetchCommunities();
     }, []);
 
     
@@ -59,30 +47,6 @@ const Communities = () => {
                             </Grid>
                         </Grid> : 
                         <Grid container spacing={gridSpacing}>
-                            <Grid item xs={12} md={6} lg={4}>
-                                <MainCard>
-                                    <Grid container spacing={gridSpacing} justifyContent='left'>
-                                        <Grid item mt={2} item xs={12} >
-                                            <Typography variant='h2' align='center'>{communityData.length.toString()}</Typography>
-                                        </Grid>
-                                    
-                                        <Grid item xs={5} >
-                                            <Typography variant='subtitle1'>
-                                                4 Campaigns
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={2}>
-                                            <Divider orientation="vertical"/>
-                                        </Grid>
-                                        <Grid item xs={5} >
-                                            <Typography variant='subtitle1'>
-                                                45 residents
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
-                                    
-                                </MainCard>
-                            </Grid>
                             {communityData.map((item) => (
 
                                 <Grid key={item.sfid} item xs={12} md={6} lg={4}>
@@ -124,4 +88,4 @@ const Communities = () => {
     
 };
 
-export default Communities;
+export default CommunitiesHome;
