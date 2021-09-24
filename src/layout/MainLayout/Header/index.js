@@ -7,6 +7,7 @@ import { Avatar, Box, ButtonBase } from '@material-ui/core';
 
 // project imports
 import LogoSection from '../LogoSection';
+import NewSearchSection from './NewSearch';
 import SearchSection from './SearchSection';
 import ProfileSection from './ProfileSection';
 import NotificationSection from './NotificationSection';
@@ -59,9 +60,11 @@ const Header = ({ handleLeftDrawerToggle }) => {
             </div>
 
             {/* header search */}
-            <SearchSection theme="light" />
+            {/* <SearchSection theme="light" />
             <div className={classes.grow} />
-            <div className={classes.grow} />
+            <div className={classes.grow} /> */}
+            <NewSearchSection></NewSearchSection>
+            
 
             {/* notification & profile */}
             {/* <NotificationSection />
