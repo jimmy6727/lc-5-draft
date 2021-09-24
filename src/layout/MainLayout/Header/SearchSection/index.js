@@ -21,7 +21,7 @@ import SearchResults from '../../../../views/search';
 // style constant
 const useStyles = makeStyles((theme) => ({
     searchControl: {
-        width: '434px',
+        width: '450px',
         marginLeft: '16px',
         paddingRight: '16px',
         paddingLeft: '16px',
@@ -30,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
             paddingLeft: '5px !important'
         },
         [theme.breakpoints.down('lg')]: {
-            width: '250px'
+            width: '400px'
         },
         [theme.breakpoints.down('md')]: {
-            width: '100%',
+            width: '300%',
             marginLeft: '4px',
             background: '#fff'
         }
@@ -100,17 +100,20 @@ const SearchSection = () => {
     const searchInputField = useRef(null)
 
     const toggleSearch = () => {
+        console.log('called')
         if (searching == 'hidden') {
             console.log('showing')
             setSearching('visible')
+            searchInputField.current.focus()
         } else {
             console.log('hiding')
             setSearchInput("")
+            setSearching('hidden')
         }
-        searchInputField.current.focus()
     }
     
-    useHotkeys('command+k', () => toggleSearch());
+    useHotkeys('command+k', () => setSearching(searching => searching = (searching == 'hidden' ? 'visible':'hidden') ));
+    useHotkeys('esc', () => console.log('esc'));
 
     useEffect(() => {
         ResidentsService.forAccount('0014S000001xlxoQAA')    
@@ -155,6 +158,12 @@ const SearchSection = () => {
             setSearching('hidden')
         }
     }, [searchInput])
+
+    useEffect(() => {
+        if (searching == 'visible'){
+            searchInputField.current.focus()
+        }
+    })
 
     return (
         <React.Fragment>

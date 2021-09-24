@@ -5,14 +5,26 @@ import { Link, useHistory } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     dropdownResults: {
         position: 'absolute',
-        left: '20%',
+        width: '434px',
         top: '80%',
-        width: '400px',
-        zIndex: '5',
-        padding: '20px',
+        marginLeft: '16px',
+        paddingRight: '16px',
+        paddingLeft: '16px',
+        '& input': {
+            background: 'transparent !important',
+            paddingLeft: '5px !important'
+        },
+        [theme.breakpoints.down('lg')]: {
+            width: '250px'
+        },
+        [theme.breakpoints.down('md')]: {
+            width: '100%',
+            marginLeft: '4px',
+            background: '#fff'
+        },
         backgroundColor: 'white',
         height: 'fit-content',
-        maxHeight: 'calc(100vh - 60px)',
+        // maxHeight: 'calc(100vh - 60px)',
         overflowX: 'hidden'
     },
     cardResult: {
