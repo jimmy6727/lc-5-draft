@@ -139,7 +139,7 @@ const ResidentSortableMetrics = ({ isLoading, showCommunitiesFilter }) => {
         };
 
         
-        CommunitiesService.forAccount('0014S000001xlxoQAA')
+        CommunitiesService.forAccount('0014S000004YSNEQA4')
         .then(res => {
             var new_choices = communitySelectInitialVal;
             {res.data.data.map((community) => {

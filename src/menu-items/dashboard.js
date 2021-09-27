@@ -5,12 +5,14 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import CommunitiesService from '../utils/CommunitiesService';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 // constant
 const icons = {
     IconDashboard: IconDashboard,
     EqualizerIcon: EqualizerIcon,
     HomeWorkIcon:HomeWorkIcon,
+    SettingsIcon:SettingsIcon,
     PersonIcon:PersonIcon,
     PeopleAltIcon:PeopleAltIcon,
     IconDeviceAnalytics
@@ -18,7 +20,7 @@ const icons = {
 
 //-----------------------|| DASHBOARD MENU ITEMS ||-----------------------//
 const community_sidemenu_choices = []
-CommunitiesService.forAccount('0014S000001xlxoQAA')
+CommunitiesService.forAccount('0014S000004YSNEQA4')
 .then(res => {
     {res.data.data.map((community) => {
         console.log(community.address__c)
@@ -55,14 +57,14 @@ export const dashboard = {
             children: community_sidemenu_choices,
             breadcrumbs: false
         },
-        {
-            id: 'campaign',
-            title: 'Campaign Home',
-            type: 'item',
-            url: '/campaign/1',
-            icon: icons['PersonIcon'],
-            breadcrumbs: false
-        },
+        // {
+        //     id: 'campaign',
+        //     title: 'Campaign Home',
+        //     type: 'item',
+        //     url: '/campaign/1',
+        //     icon: icons['PersonIcon'],
+        //     breadcrumbs: false
+        // },
         {
             id: 'residents',
             title: 'Residents',
@@ -84,7 +86,7 @@ export const dashboard = {
             title: 'Settings',
             type: 'collapse',
             url: '/settings',
-            icon: icons['HomeWorkIcon'],
+            icon: icons['SettingsIcon'],
             children: [
                 {
                     id: 'general',

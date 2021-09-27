@@ -7,12 +7,16 @@ import ResidentsService from '../../../../utils/ResidentsService';
 import CommunitiesService from '../../../../utils/CommunitiesService';
 import RewardsCampaignsService from '../../../../utils/RewardsCampaignsService';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { useHistory } from 'react-router-dom';
+import { InputAdornment } from '@material-ui/core';
 
 
 // style constant
 const useStyles = makeStyles((theme) => ({
     searchControl: {
         width: '600px',
+        height: '100%',
+        maxHeight: 'calc(100vh - 205px)',
         marginLeft: '16px',
         paddingRight: '16px',
         paddingLeft: '16px',
@@ -32,8 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewSearchResults() {
+    const searchDefault = {name:"", value:""}
+    const history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [searchInput, setSearchInput] = React.useState(searchDefault)
     const [residents, setResidents] = React.useState([]);
     const [rewardsCampaigns, setRewardsCampaigns] = React.useState([]);
     const [communities, setCommunities] = React.useState([]);
@@ -41,21 +48,11 @@ function NewSearchResults() {
     const loading = open && options.length === 0;
 
     const searchInputField = React.useRef(null)
-    useHotkeys('command+k', () => toggleSearch());
-
-    const toggleSearch = () => {
-        if (!open) {
-            setOpen(true);
-            searchInputField.current.focus();
-        }
-        else{
-            setOpen(false);
-        }
-    }
+    useHotkeys('command+k', () => setOpen(open => open = (!open)));
 
     // residents search results
     React.useEffect(() => {
-        ResidentsService.forAccount('0014S000001xlxoQAA')    
+        ResidentsService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })
@@ -70,7 +67,7 @@ function NewSearchResults() {
 
     // campaigns search results
     React.useEffect(() => {
-        RewardsCampaignsService.forAccount('0014S000001xlxoQAA')    
+        RewardsCampaignsService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })
@@ -85,7 +82,7 @@ function NewSearchResults() {
 
     // communities search results
     React.useEffect(() => {
-        CommunitiesService.forAccount('0014S000001xlxoQAA')    
+        CommunitiesService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })
@@ -123,7 +120,11 @@ function NewSearchResults() {
 
     React.useEffect(() => {
         if (!open) {
-          setOptions([]);
+            console.log('not open')
+            setOptions([]);
+        }
+        else{
+            searchInputField.current.focus();
         }
     }, [open]);
 
@@ -131,24 +132,57 @@ function NewSearchResults() {
         <Autocomplete className={classes.searchControl}
         id="asynchronous-demo"
         open={open}
-        openOnFocus={true}
+        value={searchInput}
         clearOnEscape={true}
+        autoComplete={true}
+        autoHighlight={true}
         clearOnBlur={true}
+        blurOnSelect={true}
         fullWidth={true}
+        selectOnFocus={true}
         onOpen={() => {
             setOpen(true);
         }}
         onClose={(e, reason) => {
             console.log(reason)
-            console.log("selected:")
-            console.log(e.target)
             setOpen(false);
         }}
         isOptionEqualToValue={(option, value) => 
             option.name === value.name
         }
+        onHighlightChange={(event, option, reason) => {
+            console.log(event)
+            console.log(reason)
+            if (option && (reason == 'keyboard' || reason == 'mouse')){
+                console.log(option.name)
+            }
+        }}
+        onChange={(event, option) => {
+            console.log(event)
+            if (event = 'selectOption'){
+                if (option){
+                    switch (option.type){
+                        case 'Residents':
+                            history.push(`/resident/${option.sfid}`);
+                            setOpen(false);
+                            break;
+                        case 'Communities':
+                            history.push(`/community/${option.sfid}`);
+                            setOpen(false);
+                            break;
+                        case "Rewards Campaigns":
+                            history.push(`/campaigns/${option.sfid}`);
+                            setOpen(false);
+                            setSearchInput(searchDefault)
+                            break;
+                        }
+                    }
+                }
+            }
+        }
         options={options}
         loading={loading}
+        noOptionsText='No results found...'
         groupBy={(option) => option.type}
         getOptionLabel={(option) => option.name}
         renderInput={(params) => (

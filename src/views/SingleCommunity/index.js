@@ -41,7 +41,6 @@ const SingleCommunity = () => {
                setLoading(false);
             })
         )
-
     }, []);
 
     
@@ -49,7 +48,7 @@ const SingleCommunity = () => {
         
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-                {isLoading ? 
+                {isLoading == true ? 
                     <Grid container spacing={gridSpacing}>
                         <Grid item xs={12} md={6} lg={4}>    
                             <CircularProgress color="secondary"></CircularProgress> 
@@ -106,7 +105,7 @@ const SingleCommunity = () => {
                             <Typography variant="h1_light">Community Spending</Typography>
                         </Grid>
                         <Grid mt={2} item xs={12} >
-                            <CommunitySpendingGraph isLoading={false}/>
+                            <CommunitySpendingGraph isLoading={isLoading}/>
                         </Grid>
 
                         <Grid mt={2} item xs={12} >
