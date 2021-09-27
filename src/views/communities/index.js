@@ -7,9 +7,8 @@ import { Grid, Typography, CircularProgress, Divider } from '@material-ui/core';
 // project imports
 import MainCard from '../../ui-component/cards/MainCard';
 import { gridSpacing } from '../../store/constant';
-import APIClient from '../../utils/APIClient';
+import userGlobals from '../../utils/userGlobals';
 import CommunitiesService from '../../utils/CommunitiesService';
-import sleep from '../../utils/util'
 
 
 
@@ -23,7 +22,7 @@ const CommunitiesHome = () => {
     useEffect(() => {
         // Get communities for account
         setLoading(true);
-        CommunitiesService.forAccount('0014S000004YSNEQA4')
+        CommunitiesService.forAccount(userGlobals.account_sfid)
         .then(res => {
             setCommunityData(res.data.data)
             setLoading(false);

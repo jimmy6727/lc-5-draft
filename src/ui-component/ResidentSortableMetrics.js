@@ -15,7 +15,7 @@ import SkeletonTotalGrowthBarChart from './cards/Skeleton/TotalGrowthBarChart';
 import MainCard from './cards/MainCard';
 import { gridSpacing } from '../store/constant';
 import CommunitiesService from '../utils/CommunitiesService';
-import sleep from '../utils/util'
+import userGlobals from '../utils/userGlobals';
 
 //assets
 import KeyboardArrowUpOutlinedIcon from '@material-ui/icons/KeyboardArrowUpOutlined';
@@ -139,7 +139,7 @@ const ResidentSortableMetrics = ({ isLoading, showCommunitiesFilter }) => {
         };
 
         
-        CommunitiesService.forAccount('0014S000004YSNEQA4')
+        CommunitiesService.forAccount(userGlobals.account_sfid)
         .then(res => {
             var new_choices = communitySelectInitialVal;
             {res.data.data.map((community) => {

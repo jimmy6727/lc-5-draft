@@ -6,6 +6,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import CommunitiesService from '../utils/CommunitiesService';
 import SettingsIcon from '@material-ui/icons/Settings';
+import userGlobals from '../utils/userGlobals';
 
 // constant
 const icons = {
@@ -20,7 +21,7 @@ const icons = {
 
 //-----------------------|| DASHBOARD MENU ITEMS ||-----------------------//
 const community_sidemenu_choices = []
-CommunitiesService.forAccount('0014S000004YSNEQA4')
+CommunitiesService.forAccount(userGlobals.account_sfid)
 .then(res => {
     {res.data.data.map((community) => {
         console.log(community.address__c)

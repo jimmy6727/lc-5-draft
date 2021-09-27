@@ -25,6 +25,7 @@ import { visuallyHidden } from '@material-ui/utils';
 import ResidentsService from '../utils/ResidentsService';
 import { CircularProgress } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import userGlobals from '../utils/userGlobals';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -261,7 +262,7 @@ export default function ResidentsTable() {
 
 
   React.useEffect(() => {
-    ResidentsService.forAccount('0014S000004YSNEQA4')    
+    ResidentsService.forAccount(userGlobals.account_sfid)    
     .then(res => {
         return res.data.data;
     })

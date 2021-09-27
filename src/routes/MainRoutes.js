@@ -5,6 +5,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 import MainLayout from './../layout/MainLayout';
 import Loadable from '../ui-component/Loadable';
 import CommunitiesService from '../utils/CommunitiesService';
+import userGlobals from '../utils/userGlobals';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
@@ -35,7 +36,7 @@ const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 const MainRoutes = () => {
     const location = useLocation();
     const community_routes = []
-    CommunitiesService.forAccount('0014S000004YSNEQA4')
+    CommunitiesService.forAccount(userGlobals.account_sfid)
     .then(res => {
         {res.data.data.map((community) => {
             // console.log(community.address__c)

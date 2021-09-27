@@ -17,6 +17,7 @@ import ResidentsService from '../../../../utils/ResidentsService';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
 import SearchResults from '../../../../views/search';
+import userGlobals from '../../../../utils/userGlobals';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -116,7 +117,7 @@ const SearchSection = () => {
     useHotkeys('esc', () => console.log('esc'));
 
     useEffect(() => {
-        ResidentsService.forAccount('0014S000004YSNEQA4')    
+        ResidentsService.forAccount(userGlobals.account_sfid)    
         .then(res => {
             return res.data.data;
         })
@@ -126,7 +127,7 @@ const SearchSection = () => {
     }, [])
 
     useEffect(() => {
-        CommunitiesService.forAccount('0014S000004YSNEQA4')    
+        CommunitiesService.forAccount(userGlobals.account_sfid)    
         .then(res => {
             return res.data.data;
         })
@@ -136,7 +137,7 @@ const SearchSection = () => {
     }, [])
 
     useEffect(() => {
-        RewardsCampaignsService.forAccount('0014S000004YSNEQA4')    
+        RewardsCampaignsService.forAccount(userGlobals.account_sfid)    
         .then(res => {
             return res.data.data;
         })
