@@ -12,6 +12,7 @@ const OverviewHome = Loadable(lazy(() => import('../views/dashboard/Overview')))
 const CommunitiesHome = Loadable(lazy(() => import('../views/communities')));
 const SingleCommunityHome = Loadable(lazy(() => import('../views/SingleCommunity')));
 const SingleCampaignHome =  Loadable(lazy(() => import('../views/SingleCampaign')));
+const SingleResidentHome =  Loadable(lazy(() => import('../views/SingleResident')));
 const ResidentsHome = Loadable(lazy(() => import('../views/Residents')));
 const TeamHome = Loadable(lazy(() => import('../views/Team')));
 const SettingsGeneral = Loadable(lazy(() => import('../views/Settings/General')));
@@ -34,14 +35,14 @@ const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 const MainRoutes = () => {
     const location = useLocation();
     const community_routes = []
-    CommunitiesService.forAccount('0014S000001xlxoQAA')
+    CommunitiesService.forAccount('0014S000004YSNEQA4')
     .then(res => {
         {res.data.data.map((community) => {
-            console.log(community.address__c)
+            // console.log(community.address__c)
             community_routes.push("/community/"+community.sfid);
         })}
 
-        console.log("got community routes: "+community_routes)
+        // console.log("got community routes: "+community_routes)
     })
     return (
         <Route
@@ -52,6 +53,7 @@ const MainRoutes = () => {
                 '/community/:id',
                 '/campaigns/:id',
                 '/residents',
+                '/resident/:id',
                 '/team',
                 '/settings/general',
                 '/settings/statements',
@@ -72,6 +74,7 @@ const MainRoutes = () => {
                     <Route path="/community/:id" component={SingleCommunityHome} />
                     <Route path="/campaigns/:id" component={SingleCampaignHome} />
                     <Route path="/residents" component={ResidentsHome} />
+                    <Route path="/resident/:id" component={SingleResidentHome} />
                     <Route path="/team" component={TeamHome} />
                     <Route path="/settings/general" component={SettingsGeneral} />
                     <Route path="/settings/statements" component={SettingsStatements} />

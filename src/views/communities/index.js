@@ -23,7 +23,7 @@ const CommunitiesHome = () => {
     useEffect(() => {
         // Get communities for account
         setLoading(true);
-        CommunitiesService.forAccount('0014S000001xlxoQAA')
+        CommunitiesService.forAccount('0014S000004YSNEQA4')
         .then(res => {
             setCommunityData(res.data.data)
             setLoading(false);

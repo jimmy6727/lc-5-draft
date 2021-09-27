@@ -116,7 +116,7 @@ const SearchSection = () => {
     useHotkeys('esc', () => console.log('esc'));
 
     useEffect(() => {
-        ResidentsService.forAccount('0014S000001xlxoQAA')    
+        ResidentsService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })
@@ -126,7 +126,7 @@ const SearchSection = () => {
     }, [])
 
     useEffect(() => {
-        CommunitiesService.forAccount('0014S000001xlxoQAA')    
+        CommunitiesService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })
@@ -136,7 +136,7 @@ const SearchSection = () => {
     }, [])
 
     useEffect(() => {
-        RewardsCampaignsService.forAccount('0014S000001xlxoQAA')    
+        RewardsCampaignsService.forAccount('0014S000004YSNEQA4')    
         .then(res => {
             return res.data.data;
         })

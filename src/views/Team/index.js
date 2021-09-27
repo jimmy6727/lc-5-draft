@@ -22,7 +22,7 @@ const TeamHome = () => {
         const fetchCommunities = async () => {
             setLoading(true);
             await sleep(2000);
-            // APIClient.get('/rewards_campaign/list/', {params: {'account_id':'0014S000001xlxoQAA'}})
+            // APIClient.get('/rewards_campaign/list/', {params: {'account_id':'0014S000004YSNEQA4'}})
             // .then(res => {
             //     console.log(res.data.data);
             //     return res.data.data;

@@ -15,7 +15,7 @@ const icons = {
 
 export const utilities = {
     id: 'utilities',
-    title: 'Developer Tools',
+    title: 'Admin Tools',
     type: 'group',
     children: [
         {

@@ -102,7 +102,7 @@ const MainLayout = ({ children }) => {
                 position="fixed"
                 color="inherit"
                 elevation={0}
-                className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}
+                className={leftDrawerOpened ? classes.appBarWidth : classes.appBarWidth}
             >
                 <Toolbar>
                     <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
@@ -110,7 +110,7 @@ const MainLayout = ({ children }) => {
             </AppBar>
 
             {/* drawer */}
-            <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+            <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} handleLeftDrawerToggle={handleLeftDrawerToggle} />
 
             {/* main content */}
             <main
